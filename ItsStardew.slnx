@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Common/Common.csproj" />
+  <Project Path="ItsStardewShinies/ItsStardewShinies.csproj" />
+  <Project Path="ItsStardewTime/ItsStardewTime.csproj" />
+</Solution>
