@@ -8,8 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Include="..\..\Shared.ModIds\ModIds.cs" Link="ModIds.cs" />
+        <ProjectReference Include="..\..\Common\SharedIds\SharedIds.csproj" />
     </ItemGroup>
-
-
 </Project>
