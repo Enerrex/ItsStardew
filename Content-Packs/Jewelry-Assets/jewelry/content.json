@@ -1,0 +1,25 @@
+﻿{
+  "Format": "2.9.0",
+  "Changes": [
+    {
+      "Action": "Load",
+      "Target": "Mods/Caboose.Sage.Gold.Prototype/GoldRing",
+      "FromFile": "assets/gold-ring-proto-v4.png"
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/Objects",
+      "Entries": {
+        "Gold_Ring_Artisan": {
+          "Name": "Gold Ring",
+          "DisplayName": "Gold Ring",
+          "Description": "A simple handcrafted ring made from refined gold.",
+          "Type": "Basic",
+          "Category": -26,
+          "Price": 500,
+          "Texture": "Mods/Caboose.Sage.Gold.Prototype/GoldRing"
+        }
+      }
+    }
+  ]
+}

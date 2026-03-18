@@ -1,0 +1,10 @@
+﻿{
+  "Name": "Metals Content Manager",
+  "Author": "Caboose Sage",
+  "Version": "0.5.0",
+  "Description": "Loads metal-related content.",
+  "UniqueID": "Caboose.Sage.Metals.Manager",
+  "EntryDll": "MetalsContentManager.dll",
+  "MinimumApiVersion": "4.0.0",
+  "UpdateKeys": []
+}

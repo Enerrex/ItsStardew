@@ -1,0 +1,12 @@
+﻿<Project>
+    <Import Project="build/Generated.ModIds.props"
+            Condition="Exists('build/Generated.ModIds.props')" />
+    
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <ModFamilyPrefix>[ItsStardew]</ModFamilyPrefix>
+    </PropertyGroup>
+    
+</Project>

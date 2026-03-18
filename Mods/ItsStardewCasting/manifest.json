@@ -1,0 +1,16 @@
+{
+  "Name": "Its Stardew Metal Casting!",
+  "Author": "Caboose Sage",
+  "Version": "%ProjectVersion%",
+  "Description": "Adds the machines to cast metal into items.",
+  "UniqueID": "Caboose.Sage.ItsStardewCasting",
+  "EntryDll": "ItsStardewCasting.dll",
+  "MinimumApiVersion": "4.0.0",
+  "Dependencies": [
+    {
+      "UniqueID": "Caboose.Sage.Metals.Manager",
+      "IsRequired": true,
+      "MinimumVersion": "0.5.0"
+    }
+  ]
+}

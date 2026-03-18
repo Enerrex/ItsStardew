@@ -1,0 +1,26 @@
+﻿{
+  "Format": "2.9.0",
+  "Changes": [
+    {
+      "Action": "Load",
+      "Target": "Mods/{{ModId}}/CastingMachine",
+      "FromFile": "assets/casting_machine.png"
+    },
+    {
+      "Action": "EditData",
+      "Target": "Data/BigCraftables",
+      "Entries": {
+        "{{ModId}}.CastingMachine": {
+          "Name": "Casting Machine",
+          "DisplayName": "Casting Machine",
+          "Description": "Used to cast metal into molds.",
+          "Price": 2000,
+          "Fragility": 2,
+          "CanBePlacedIndoors": true,
+          "Texture": "Mods/{{ModId}}//CastingMachine",
+          "SpriteIndex": 0
+        }
+      }
+    }
+  ]
+}

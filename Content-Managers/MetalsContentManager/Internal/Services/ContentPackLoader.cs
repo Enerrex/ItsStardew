@@ -1,0 +1,122 @@
+﻿using System;
+using MetalsContentManager.Internal.Models;
+using Microsoft.Xna.Framework.Graphics;
+using StardewModdingAPI;
+
+namespace MetalsContentManager.Internal.Services;
+
+internal sealed class ContentPackLoader
+(
+    IModHelper helper,
+    IMonitor monitor,
+    ITextureRegistry registry
+)
+{
+    private readonly IModHelper helper = helper;
+    private readonly IMonitor monitor = monitor;
+    private readonly ITextureRegistry registry = registry;
+
+    public void LoadAllOwnedPacks()
+    {
+        foreach (IContentPack pack in helper.ContentPacks.GetOwned())
+        {
+            LoadPack(pack);
+        }
+    }
+
+    private void LoadPack(IContentPack pack)
+    {
+        const string metadataFile = "assets.json";
+
+        if (!pack.HasFile(metadataFile))
+        {
+            monitor.Log
+            (
+                $"Skipping content pack '{pack.Manifest.UniqueID}' because '{metadataFile}' is missing.",
+                LogLevel.Warn
+            );
+            return;
+        }
+
+        PackAssetsFile? metadata = pack.ReadJsonFile<PackAssetsFile>(metadataFile);
+        if (metadata is null)
+        {
+            monitor.Log
+            (
+                $"Skipping content pack '{pack.Manifest.UniqueID}' because '{metadataFile}' could not be parsed.",
+                LogLevel.Error
+            );
+            return;
+        }
+
+        if (metadata.Textures.Count == 0)
+        {
+            monitor.Log
+                ($"Content pack '{pack.Manifest.UniqueID}' defines no textures in '{metadataFile}'.", LogLevel.Warn);
+            return;
+        }
+
+        foreach ((string role, string relativePath) in metadata.Textures)
+        {
+            RegisterTexture
+            (
+                pack,
+                role,
+                relativePath
+            );
+        }
+    }
+
+    private void RegisterTexture(IContentPack pack, string role, string relativePath)
+    {
+        if (string.IsNullOrWhiteSpace(role))
+        {
+            monitor.Log($"Pack '{pack.Manifest.UniqueID}' contains a blank asset role. Entry skipped.", LogLevel.Error);
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(relativePath))
+        {
+            monitor.Log
+            (
+                $"Pack '{pack.Manifest.UniqueID}' defines role '{role}' with a blank path. Entry skipped.",
+                LogLevel.Error
+            );
+            return;
+        }
+
+        if (!pack.HasFile(relativePath))
+        {
+            monitor.Log
+            (
+                $"Pack '{pack.Manifest.UniqueID}' defines role '{role}' with missing file '{relativePath}'.",
+                LogLevel.Error
+            );
+            return;
+        }
+
+        try
+        {
+            Texture2D texture = pack.ModContent.Load<Texture2D>(relativePath);
+            IAssetName assetName = pack.ModContent.GetInternalAssetName(relativePath);
+
+            registry.Register
+            (
+                role,
+                texture,
+                assetName,
+                pack.Manifest.UniqueID
+            );
+
+            monitor.Log($"Registered asset role '{role}' from '{pack.Manifest.UniqueID}' as '{assetName}'.");
+        }
+        catch (Exception ex)
+        {
+            monitor.Log
+            (
+                $"Failed loading role '{role}' from pack '{pack.Manifest.UniqueID}' at '{relativePath}': {ex}",
+                LogLevel.Error
+            );
+        }
+    }
+}

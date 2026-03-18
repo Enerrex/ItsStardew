@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <EnableHarmony>true</EnableHarmony>
+        <Version>0.5.0</Version>
+        <ModFolderName>$(ModFamilyPrefix) Metals Content</ModFolderName>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Folder Include="Loaders\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" />
+    </ItemGroup>
+</Project>

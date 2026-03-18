@@ -1,5 +1,17 @@
 <Solution>
-  <Project Path="Common/Common.csproj" />
-  <Project Path="ItsStardewShinies/ItsStardewShinies.csproj" />
-  <Project Path="ItsStardewTime/ItsStardewTime.csproj" />
+  <Folder Name="/Common/">
+    <Project Path="Common/SharedIds/SharedIds.csproj" />
+    <Project Path="Common/StringUtils/StringUtils.csproj" />
+  </Folder>
+  <Folder Name="/Content-Managers/">
+    <Project Path="Content-Managers/MetalsContentManager/MetalsContentManager.csproj" />
+  </Folder>
+  <Folder Name="/Mods/">
+    <Project Path="Mods/ItsStardewCasting/ItsStardewCasting.csproj" />
+    <Project Path="Mods/ItsStardewTime/ItsStardewTime.csproj" />
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="Tools/DirectoryTreeDisplay/DirectoryTreeDisplay.csproj" />
+    <Project Path="Tools/Writers/Writers.csproj" />
+  </Folder>
 </Solution>
