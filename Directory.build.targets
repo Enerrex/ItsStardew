@@ -1,0 +1,29 @@
+﻿<Project>
+    <Target Name="GenerateManifest"
+            BeforeTargets="BeforeBuild"
+            Condition="'$(EnableManifestGeneration)' == 'true' and Exists('$(ManifestTemplateFile)')">
+
+        <ReadLinesFromFile File="$(ManifestTemplateFile)">
+            <Output TaskParameter="Lines" ItemName="ManifestTemplateLines"/>
+        </ReadLinesFromFile>
+
+        <PropertyGroup>
+            <_ManifestText>@(ManifestTemplateLines, '%0A')</_ManifestText>
+            
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('$$(Version)', '$(Version)'))</_ManifestText>
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('$$(Author)', '$(Author)'))</_ManifestText>
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('$$(ModUniqueId)', '$(ModUniqueId)'))</_ManifestText>
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('$$(ManagerUniqueId)', '$(ManagerUniqueId)'))</_ManifestText>
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('$$(EntryDll)', '$(EntryDll)'))</_ManifestText>
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('$$(MinimumApiVersion)', '$(MinimumApiVersion)'))</_ManifestText>
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('$$(Description)', '$(Description)'))</_ManifestText>
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('$$(UpdateKeys)', '$(UpdateKeys)'))</_ManifestText>
+        </PropertyGroup>
+
+        <WriteLinesToFile
+                File="$(ManifestOutputFile)"
+                Lines="$(_ManifestText)"
+                Overwrite="true"
+                WriteOnlyWhenDifferent="true"/>
+    </Target>
+</Project>

@@ -7,6 +7,10 @@
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
         <ModFamilyPrefix>[ItsStardew]</ModFamilyPrefix>
+
+        <EnableManifestGeneration>false</EnableManifestGeneration>
+        <ManifestTemplateFile>$(MSBuildProjectDirectory)\manifest.template.json</ManifestTemplateFile>
+        <ManifestOutputFile>$(MSBuildProjectDirectory)\manifest.json</ManifestOutputFile>
     </PropertyGroup>
     
 </Project>
