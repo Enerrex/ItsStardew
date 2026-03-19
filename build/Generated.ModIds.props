@@ -1,0 +1,7 @@
+<Project>
+  <PropertyGroup>
+    <UniqueId_CastingMod>Caboose.Sage.ItsStardewCasting</UniqueId_CastingMod>
+    <UniqueId_JewelryAssets>Caboose.Sage.ItsStardewJewelry.Assets</UniqueId_JewelryAssets>
+    <UniqueId_MetalsContentManager>Caboose.Sage.Metals.Content.Manager</UniqueId_MetalsContentManager>
+  </PropertyGroup>
+</Project>

@@ -1,16 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
-        <EnableHarmony>true</EnableHarmony>
-        <Version>0.5.0</Version>
-        <ModFolderName>$(ModFamilyPrefix) Metals Content</ModFolderName>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+
+        <Version>1.0.0</Version>
+        <Description>Central manager for metals-related shared assets and APIs.</Description>
+
+        <EnableManifestGeneration>true</EnableManifestGeneration>
+        <ModUniqueId>$(UniqueId_MetalsContentManager)</ModUniqueId>
+
+        <!-- Optional. Leave unset unless you need to override the assembly file name. -->
+        <!-- <AssemblyName>MetalsContentManager</AssemblyName> -->
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Loaders\"/>
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" />
+        <ProjectReference Include="..\..\Common\SharedIds\SharedIds.csproj" />
+        <ProjectReference Include="..\..\Common\StringUtils\StringUtils.csproj" />
     </ItemGroup>
 </Project>

@@ -1,0 +1,75 @@
+﻿<Project>
+    <Target Name="GenerateManifest"
+            BeforeTargets="BeforeBuild"
+            Condition="'$(EnableManifestGeneration)' == 'true' and Exists('$(ManifestTemplateFile)')">
+
+        <!-- Resolve the exact DLL filename that the project build is using -->
+        <PropertyGroup>
+            <!-- Explicit override wins -->
+            <EffectiveEntryDll Condition="'$(EntryDll)' != ''">$(EntryDll)</EffectiveEntryDll>
+
+            <!-- If AssemblyName is set, the primary output file is AssemblyName + extension -->
+            <EffectiveEntryDll Condition="'$(EffectiveEntryDll)' == '' and '$(AssemblyName)' != ''">$(AssemblyName)$(TargetExt)</EffectiveEntryDll>
+
+            <!-- Final fallback: project name + extension -->
+            <EffectiveEntryDll Condition="'$(EffectiveEntryDll)' == ''">$(MSBuildProjectName)$(TargetExt)</EffectiveEntryDll>
+        </PropertyGroup>
+
+        <!-- Guard rails -->
+        <Error Condition="'$(ModUniqueId)' == ''"
+               Text="Manifest generation failed for $(MSBuildProjectName): ModUniqueId is empty." />
+
+        <Error Condition="'$(EffectiveEntryDll)' == ''"
+               Text="Manifest generation failed for $(MSBuildProjectName): EffectiveEntryDll is empty." />
+
+        <ReadLinesFromFile File="$(ManifestTemplateFile)">
+            <Output TaskParameter="Lines" ItemName="ManifestTemplateLines" />
+        </ReadLinesFromFile>
+
+        <PropertyGroup>
+            <_ManifestText>@(ManifestTemplateLines, '%0A')</_ManifestText>
+        </PropertyGroup>
+
+        <!-- Replace only when a value exists -->
+        <PropertyGroup Condition="'$(Author)' != ''">
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('%24(Author)', '$(Author)'))</_ManifestText>
+        </PropertyGroup>
+
+        <PropertyGroup Condition="'$(Version)' != ''">
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('%24(Version)', '$(Version)'))</_ManifestText>
+        </PropertyGroup>
+
+        <PropertyGroup Condition="'$(Description)' != ''">
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('%24(Description)', '$(Description)'))</_ManifestText>
+        </PropertyGroup>
+
+        <PropertyGroup Condition="'$(ModUniqueId)' != ''">
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('%24(ModUniqueId)', '$(ModUniqueId)'))</_ManifestText>
+        </PropertyGroup>
+
+        <PropertyGroup Condition="'$(MetalsContentManagerUniqueId)' != ''">
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('%24(MetalsContentManagerUniqueId)', '$(MetalsContentManagerUniqueId)'))</_ManifestText>
+        </PropertyGroup>
+
+        <PropertyGroup Condition="'$(EffectiveEntryDll)' != ''">
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('%24(EntryDll)', '$(EffectiveEntryDll)'))</_ManifestText>
+        </PropertyGroup>
+
+        <PropertyGroup Condition="'$(MinimumApiVersion)' != ''">
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('%24(MinimumApiVersion)', '$(MinimumApiVersion)'))</_ManifestText>
+        </PropertyGroup>
+
+        <PropertyGroup Condition="'$(UpdateKeys)' != ''">
+            <_ManifestText>$([System.String]::Copy('$(_ManifestText)').Replace('%24(UpdateKeys)', '$(UpdateKeys)'))</_ManifestText>
+        </PropertyGroup>
+
+        <WriteLinesToFile
+                File="$(ManifestOutputFile)"
+                Lines="$(_ManifestText)"
+                Overwrite="true"
+                WriteOnlyWhenDifferent="true" />
+
+        <Message Importance="High"
+                 Text="Generated manifest for $(MSBuildProjectName): UniqueID=$(ModUniqueId), EntryDll=$(EffectiveEntryDll)" />
+    </Target>
+</Project>

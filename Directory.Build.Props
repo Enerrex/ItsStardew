@@ -6,11 +6,19 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        
+        <!-- Repo-wide defaults -->
+        <Author>Caboose Sage</Author>
+        <EnableManifestGeneration>false</EnableManifestGeneration>
         <ModFamilyPrefix>[ItsStardew]</ModFamilyPrefix>
 
-        <EnableManifestGeneration>false</EnableManifestGeneration>
+        <!-- Default manifest locations -->
         <ManifestTemplateFile>$(MSBuildProjectDirectory)\manifest.template.json</ManifestTemplateFile>
         <ManifestOutputFile>$(MSBuildProjectDirectory)\manifest.json</ManifestOutputFile>
+
+        <!-- Default SMAPI values -->
+        <MinimumApiVersion Condition="'$(MinimumApiVersion)' == ''">4.0.0</MinimumApiVersion>
+        <UpdateKeys Condition="'$(UpdateKeys)' == ''">[]</UpdateKeys>
     </PropertyGroup>
     
 </Project>

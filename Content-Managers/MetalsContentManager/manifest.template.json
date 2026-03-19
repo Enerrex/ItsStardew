@@ -1,0 +1,9 @@
+﻿{
+  "Name": "Metals Content Manager",
+  "Author": "$(Author)",
+  "Version": "$(Version)",
+  "Description": "$(Description)",
+  "UniqueID": "$(ModUniqueId)",
+  "EntryDll": "$(EntryDll)",
+  "MinimumApiVersion": "$(MinimumApiVersion)"
+}
