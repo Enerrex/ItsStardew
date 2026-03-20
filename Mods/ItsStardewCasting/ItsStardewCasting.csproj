@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\StringUtils\StringUtils.csproj" />
     <ProjectReference Include="..\..\Content-Managers\MetalsContentManager\MetalsContentManager.csproj" />
   </ItemGroup>
 </Project>

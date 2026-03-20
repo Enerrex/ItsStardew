@@ -14,4 +14,7 @@
     <Project Path="Tools/DirectoryTreeDisplay/DirectoryTreeDisplay.csproj" />
     <Project Path="Tools/Writers/Writers.csproj" />
   </Folder>
+  <Folder Name="/Content-Packs/">
+    <Project Path="Content-Packs/Metal-Assets/casting-machine/casting-machine.csproj"/>
+  </Folder>
 </Solution>

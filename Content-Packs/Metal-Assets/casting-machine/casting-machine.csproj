@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+
+        <Version>0.0.0</Version>
+        <Description>Assets for Casting Machine content.</Description>
+
+        <EnableManifestGeneration>true</EnableManifestGeneration>
+        <ModUniqueId>$(UniqueId_MetalsContentManager)</ModUniqueId>
+
+        <!-- Optional. Leave unset unless you need to override the assembly file name. -->
+        <!-- <AssemblyName>MetalsContentManager</AssemblyName> -->
+    </PropertyGroup>
+</Project>
