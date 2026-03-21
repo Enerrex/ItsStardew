@@ -2,7 +2,7 @@
 
 namespace ConsoleUtil;
 
-class Program
+internal class Program
 {
     private static readonly HashSet<string> SkippedDirectories =
         new HashSet<string>(StringComparer.OrdinalIgnoreCase)
@@ -14,7 +14,7 @@ class Program
             
         };
 
-    static int Main(string[] args)
+    private static int Main(string[] args)
     {
         if (args.Length == 0)
         {
@@ -48,7 +48,7 @@ class Program
         return 0;
     }
 
-    static void PrintTree(string directoryPath, StringBuilder sb, string indent)
+    private static void PrintTree(string directoryPath, StringBuilder sb, string indent)
     {
         DirectoryInfo dir;
         try
@@ -90,7 +90,7 @@ class Program
         }
     }
 
-    static bool ShouldSkip(FileSystemInfo entry)
+    private static bool ShouldSkip(FileSystemInfo entry)
     {
         return entry is DirectoryInfo dir
             && SkippedDirectories.Contains(dir.Name);

@@ -1,0 +1,15 @@
+{
+  "Name": "Its Stardew Casting",
+  "Author": "__Author__",
+  "Version": "__Version__",
+  "Description": "__Description__",
+  "UniqueID": "__ModUniqueId__",
+  "EntryDll": "__EntryDll__",
+  "MinimumApiVersion": "__MinimumApiVersion__",
+  "Dependencies": [
+    {
+      "UniqueID": "__MetalsContentManagerUniqueId__",
+      "IsRequired": true
+    }
+  ]
+}

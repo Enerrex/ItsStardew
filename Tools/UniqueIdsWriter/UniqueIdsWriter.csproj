@@ -5,9 +5,10 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>Writers</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Common\SharedIds\SharedIds.csproj" />
+        <ProjectReference Include="..\..\Common\UniqueIds\UniqueIds.csproj" />
     </ItemGroup>
 </Project>

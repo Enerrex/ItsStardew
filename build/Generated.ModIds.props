@@ -2,6 +2,7 @@
   <PropertyGroup>
     <UniqueId_CastingMod>Caboose.Sage.ItsStardewCasting</UniqueId_CastingMod>
     <UniqueId_JewelryAssets>Caboose.Sage.ItsStardewJewelry.Assets</UniqueId_JewelryAssets>
+    <UniqueId_MetalsContentPack>Caboose.Sage.Metals.Content.Pack</UniqueId_MetalsContentPack>
     <UniqueId_MetalsContentManager>Caboose.Sage.Metals.Content.Manager</UniqueId_MetalsContentManager>
   </PropertyGroup>
 </Project>

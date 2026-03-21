@@ -16,7 +16,7 @@
 
     <ItemGroup>
         <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" />
-        <ProjectReference Include="..\..\Common\SharedIds\SharedIds.csproj" />
+        <ProjectReference Include="..\..\Common\UniqueIds\UniqueIds.csproj" />
         <ProjectReference Include="..\..\Common\StringUtils\StringUtils.csproj" />
     </ItemGroup>
 </Project>
