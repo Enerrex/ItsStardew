@@ -7,16 +7,19 @@
         <Version>1.0.0</Version>
         <Description>Central manager for metals-related shared assets and APIs.</Description>
 
-        <EnableManifestGeneration>true</EnableManifestGeneration>
-        <ModUniqueId>$(UniqueId_MetalsContentManager)</ModUniqueId>
+        <GenerateManagedManifest>true</GenerateManagedManifest>
+        <ManifestKind>SmapiMod</ManifestKind>
 
-        <!-- Optional. Leave unset unless you need to override the assembly file name. -->
-        <!-- <AssemblyName>MetalsContentManager</AssemblyName> -->
+        <ManifestName>Metals Content Manager</ManifestName>
+        <ManifestUniqueId>$(PROJECTVARS_CONTENT_MANAGERS_METALS)</ManifestUniqueId>
+        <ManifestAuthor>$(PROJECTVARS_AUTHOR_NAME)</ManifestAuthor>
+
+        <!-- purely organizational for now -->
+        <ContentManager>true</ContentManager>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" />
         <ProjectReference Include="..\..\Common\UniqueIds\UniqueIds.csproj" />
-        <ProjectReference Include="..\..\Common\StringUtils\StringUtils.csproj" />
     </ItemGroup>
 </Project>

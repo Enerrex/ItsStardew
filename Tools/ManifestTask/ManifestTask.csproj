@@ -4,7 +4,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>latest</LangVersion>
-        <IsPackable>false</IsPackable>
+        <AssemblyName>ManifestTask</AssemblyName>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="Microsoft.Build.Framework" />

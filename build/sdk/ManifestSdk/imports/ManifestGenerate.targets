@@ -1,0 +1,55 @@
+﻿<Project>
+    <Target Name="GenerateManagedManifest"
+            BeforeTargets="Build"
+            DependsOnTargets="ApplyManifestFallbacks"
+            Condition="'$(GenerateManagedManifest)' == 'true'">
+
+        <Message Importance="High" Text="GenerateManagedManifest running for $(MSBuildProjectName)" />
+        <Message Importance="High" Text="ManifestTaskAssembly='$(ManifestTaskAssembly)'" />
+        <Message Importance="High" Text="ManifestKind='$(ManifestKind)'" />
+        <Message Importance="High" Text="ManifestVersion='$(ManifestVersion)'" />
+        <Message Importance="High" Text="ManifestName='$(ManifestName)'" />
+        <Message Importance="High" Text="ManifestUniqueId='$(ManifestUniqueId)'" />
+        <Message Importance="High" Text="ManifestEntryDll='$(ManifestEntryDll)'" />
+        <Message Importance="High" Text="ManagedManifestOutputPath='$(ManagedManifestOutputPath)'" />
+        <Message Importance="High" Text="ManifestContentParkFor='$(ManifestContentParkFor)'" />
+
+        <Error Condition="!Exists('$(ManifestTaskAssembly)')"
+               Text="Manifest task assembly not found at '$(ManifestTaskAssembly)'." />
+
+        <Error Condition="'$(ManifestKind)' == ''"
+               Text="GenerateManagedManifest=true but ManifestKind is empty for $(MSBuildProjectName)." />
+
+        <Error Condition="'$(ManifestVersion)' == ''"
+               Text="ManifestVersion is empty for $(MSBuildProjectName). Version='$(Version)'" />
+
+        <Error Condition="'$(ManifestName)' == ''"
+               Text="ManifestName is empty for $(MSBuildProjectName)." />
+
+        <Error Condition="'$(ManifestUniqueId)' == ''"
+               Text="ManifestUniqueId is empty for $(MSBuildProjectName)." />
+        
+        <!-- ContentPackType and No ContentPackFor specified -->
+        <Error Condition="'$(ManifestKind)' == 'SmapiContentPack' And '$(ManifestContentParkFor)' == ''"
+               Text="ManifestKind is SmapiContentPack but ContentPackFor is empty." />
+
+        <GenerateManifest
+                ProjectPath="$(MSBuildProjectFullPath)"
+                ProjectDirectory="$(MSBuildProjectDirectory)"
+                ProjectName="$(MSBuildProjectName)"
+                AssemblyName="$(AssemblyName)"
+                TargetFileName="$(TargetFileName)"
+                Version="$(ManifestVersion)"
+                Description="$(ManifestDescription)"
+                Author="$(ManifestAuthor)"
+                ManifestKind="$(ManifestKind)"
+                ManifestName="$(ManifestName)"
+                ManifestUniqueId="$(ManifestUniqueId)"
+                ManifestEntryDll="$(ManifestEntryDll)"
+                OutputPath="$(ManagedManifestOutputPath)"
+                TemplateRoot="$(ManifestTemplateRoot)"
+                ManifestKindsFile="$(ManifestKindsFile)" 
+                ContentPackFor="$(ManifestContentParkFor)"
+        />
+    </Target>
+</Project>

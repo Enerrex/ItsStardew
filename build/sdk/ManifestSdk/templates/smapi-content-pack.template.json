@@ -1,0 +1,10 @@
+﻿{
+  "Name": "$(ManifestName)",
+  "Author": "$(ManifestAuthor)",
+  "Version": "$(ManifestVersion)",
+  "Description": "$(ManifestDescription)",
+  "UniqueID": "$(ManifestUniqueId)",
+  "ContentPackFor": {
+    "UniqueID": "$(ManifestContentPackForUniqueId)"
+  }
+}

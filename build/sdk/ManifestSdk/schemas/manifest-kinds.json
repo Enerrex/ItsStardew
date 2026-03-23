@@ -1,0 +1,30 @@
+﻿{
+  "kinds": {
+    "SmapiMod": {
+      "template": "smapi-mod.template.json",
+      "required": [
+        "Name",
+        "Author",
+        "Version",
+        "Description",
+        "UniqueID",
+        "EntryDll"
+      ],
+      "defaults": {
+        "MinimumApiVersion": "4.0.0"
+      }
+    },
+    "SmapiContentPack": {
+      "template": "smapi-content-pack.template.json",
+      "required": [
+        "Name",
+        "Author",
+        "Version",
+        "Description",
+        "UniqueID",
+        "ContentPackFor"
+      ],
+      "defaults": {}
+    }
+  }
+}

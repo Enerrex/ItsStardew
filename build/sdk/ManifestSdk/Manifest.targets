@@ -1,0 +1,10 @@
+﻿<Project>
+    <Import Project="$(MSBuildThisFileDirectory)imports\ManifestUsingTasks.targets"
+            Condition="Exists('$(MSBuildThisFileDirectory)imports\ManifestUsingTasks.targets')" />
+
+    <Import Project="$(MSBuildThisFileDirectory)imports\ManifestFallbacks.targets"
+            Condition="Exists('$(MSBuildThisFileDirectory)imports\ManifestFallbacks.targets')" />
+
+    <Import Project="$(MSBuildThisFileDirectory)imports\ManifestGenerate.targets"
+            Condition="Exists('$(MSBuildThisFileDirectory)imports\ManifestGenerate.targets')" />
+</Project>

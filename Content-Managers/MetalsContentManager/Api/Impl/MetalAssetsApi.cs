@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using MetalsContentManager.Api.Interfaces;
 using MetalsContentManager.Internal.Services;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;

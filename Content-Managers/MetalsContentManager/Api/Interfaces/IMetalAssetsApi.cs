@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 
-namespace MetalsContentManager.Api;
+namespace MetalsContentManager.Api.Interfaces;
 
 public interface IMetalsAssetsApi
 {
