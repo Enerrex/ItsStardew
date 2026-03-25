@@ -5,8 +5,8 @@
         <ContentManager Condition="'$(ContentManager)' == ''">false</ContentManager>
 
         <!-- stable roots -->
-        <ManifestSdkRoot Condition="'$(ManifestSdkRoot)' == ''">$(MSBuildThisFileDirectory)</ManifestSdkRoot>
-        <ManifestImportsRoot Condition="'$(ManifestImportsRoot)' == ''">$(ManifestSdkRoot)imports\</ManifestImportsRoot>
+        <SmapiManifestSdkRoot Condition="'$(SmapiManifestSdkRoot)' == ''">$(MSBuildThisFileDirectory)</SmapiManifestSdkRoot>
+        <ManifestImportsRoot Condition="'$(ManifestImportsRoot)' == ''">$(SmapiManifestSdkRoot)imports\</ManifestImportsRoot>
 
         <!-- stable static defaults -->
         <ManifestAuthor Condition="'$(ManifestAuthor)' == ''">$(ManifestVar_Author)</ManifestAuthor>

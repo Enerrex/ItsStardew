@@ -1,0 +1,10 @@
+{
+  "Name": "Its Stardew Casting Machine Assets",
+  "Author": "Caboose Sage",
+  "Version": "1.0.0",
+  "Description": "Content pack providing casting machine assets.",
+  "UniqueID": "Caboose.Sage.ItsStardew.Content.Pack.Metals.CastingMachine",
+  "ContentPackFor": {
+    "UniqueID": "Caboose.Sage.ItsStardew.Content.Manager.Metals"
+  }
+}

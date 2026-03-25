@@ -1,6 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <!-- no actual dll expected, but still a participating build unit -->
         <Version>1.0.0</Version>
         <Description>Content pack providing casting machine assets.</Description>
 

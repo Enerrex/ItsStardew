@@ -1,7 +1,7 @@
 ﻿<Project>
     <PropertyGroup>
-        <ManifestSdkRoot>$(MSBuildThisFileDirectory)..\</ManifestSdkRoot>
-        <ManifestTaskAssembly Condition="'$(ManifestTaskAssembly)' == ''">$(ManifestSdkRoot)tools\ManifestTask.dll</ManifestTaskAssembly>
+        <SmapiManifestSdkRoot>$(MSBuildThisFileDirectory)..\</SmapiManifestSdkRoot>
+        <ManifestTaskAssembly Condition="'$(ManifestTaskAssembly)' == ''">$(SmapiManifestSdkRoot)tools\ManifestTask.dll</ManifestTaskAssembly>
     </PropertyGroup>
 
     <UsingTask

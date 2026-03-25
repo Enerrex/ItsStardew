@@ -5,6 +5,6 @@
   "Description": "$(ManifestDescription)",
   "UniqueID": "$(ManifestUniqueId)",
   "ContentPackFor": {
-    "UniqueID": "$(ManifestContentPackForUniqueId)"
+    "UniqueID": "$(ManifestContentParkFor)"
   }
 }
