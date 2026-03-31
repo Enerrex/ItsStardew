@@ -22,6 +22,7 @@ public sealed class ManifestKindDefinition
                 "Description" => model.ManifestDescription,
                 "UniqueID" => model.ManifestUniqueId,
                 "EntryDll" => model.ManifestEntryDll,
+                "ContentPackFor" => model.ManifestContentPackFor,
                 _ => null
             };
 

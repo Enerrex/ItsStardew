@@ -1,4 +1,4 @@
 ﻿<Project>
-    <Import Project="build/sdk/ManifestSdk/Manifest.targets"
-            Condition="Exists('build/sdk/ManifestSdk/Manifest.targets')" />
+    <Import Project="build/sdk/SmapiManifestSdk/GenerateSmapiManifest.targets"
+            Condition="Exists('build/sdk/SmapiManifestSdk/GenerateSmapiManifest.targets')" />
 </Project>

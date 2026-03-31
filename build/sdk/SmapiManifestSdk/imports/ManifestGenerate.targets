@@ -1,10 +1,10 @@
 ﻿<Project>
-    <Target Name="GenerateManagedManifest"
-            BeforeTargets="Build"
+    <Target Name="GenerateManagedManifestTarget"
+            BeforeTargets="Compile"
             DependsOnTargets="ApplyManifestFallbacks"
             Condition="'$(GenerateManagedManifest)' == 'true'">
 
-        <Message Importance="High" Text="GenerateManagedManifest running for $(MSBuildProjectName)" />
+        <Message Importance="High" Text="GenerateManagedManifestTarget running for $(MSBuildProjectName)" />
         <Message Importance="High" Text="ManifestTaskAssembly='$(ManifestTaskAssembly)'" />
         <Message Importance="High" Text="ManifestKind='$(ManifestKind)'" />
         <Message Importance="High" Text="ManifestVersion='$(ManifestVersion)'" />

@@ -1,0 +1,9 @@
+{
+  "Name": "Metals Content Manager",
+  "Author": "Caboose Sage",
+  "Version": "1.0.0",
+  "Description": "Central manager for metals-related shared assets and APIs.",
+  "UniqueID": "Caboose.Sage.ItsStardew.Content.Manager.Metals",
+  "EntryDll": "MetalsContentManager.dll",
+  "MinimumApiVersion": "4.0.0"
+}

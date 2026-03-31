@@ -47,6 +47,12 @@ internal static class Renderer
                             "$(ManifestMinimumApiVersion)",
                             Escape(model.ManifestMinimumApiVersion),
                             StringComparison.Ordinal
+                        ).
+                        Replace
+                        (
+                            "$(ManifestContentParkFor)",
+                            Escape(model.ManifestContentPackFor),
+                            StringComparison.Ordinal
                         );
     }
 

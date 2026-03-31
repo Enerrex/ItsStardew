@@ -10,4 +10,24 @@
       <PackageReference Include="Microsoft.Build.Framework" />
       <PackageReference Include="Microsoft.Build.Utilities.Core" />
     </ItemGroup>
+
+    <PropertyGroup>
+        <SmapiManifestSdkToolsDir>$(MSBuildProjectDirectory)\..\..\build\sdk\SmapiManifestSdk\tools\</SmapiManifestSdkToolsDir>
+    </PropertyGroup>
+
+    <Target Name="StageManifestTask" AfterTargets="Build">
+        <MakeDir Directories="$(SmapiManifestSdkToolsDir)" />
+
+        <Copy SourceFiles="$(TargetPath)"
+              DestinationFiles="$(SmapiManifestSdkToolsDir)ManifestTask.dll"
+              OverwriteReadOnlyFiles="true" />
+
+        <Copy SourceFiles="$(TargetDir)$(AssemblyName).pdb"
+              DestinationFiles="$(SmapiManifestSdkToolsDir)ManifestTask.pdb"
+              Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
+
+        <Copy SourceFiles="$(TargetDir)$(AssemblyName).deps.json"
+              DestinationFiles="$(SmapiManifestSdkToolsDir)ManifestTask.deps.json"
+              Condition="Exists('$(TargetDir)$(AssemblyName).deps.json')" />
+    </Target>
 </Project>

@@ -1,6 +1,6 @@
 ﻿<Project>
-    <Import Project="build/sdk/ManifestSdk/Manifest.props"
-            Condition="Exists('build/sdk/ManifestSdk/Manifest.props')" />
+    <Import Project="build/sdk/SmapiManifestSdk/GenerateSmapiManifest.props"
+            Condition="Exists('build/sdk/SmapiManifestSdk/GenerateSmapiManifest.props')" />
     
     <Import Project="build/generated/ManifestVariables.g.props"
             Condition="Exists('build/generated/ManifestVariables.g.props')" />

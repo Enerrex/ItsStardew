@@ -25,7 +25,7 @@ public sealed class GenerateManifest : Task
     [Required] public string OutputPath { get; set; } = "";
     [Required] public string TemplateRoot { get; set; } = "";
     [Required] public string ManifestKindsFile { get; set; } = "";
-    [Required] public string ContentPackFor { get; set; } = "";
+    public string ContentPackFor { get; set; } = "";
 
     public override bool Execute()
     {
