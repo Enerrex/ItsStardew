@@ -64,12 +64,14 @@ internal sealed class TextureRegistry : ITextureRegistry
         return texture;
     }
 
-    public bool TryGetTexture(string role, out Texture2D texture) =>
-        _textures.TryGetValue
+    public bool TryGetTexture(string role, out Texture2D texture)
+    {
+        return _textures.TryGetValue
         (
             role,
             out texture!
         );
+    }
 
     public IAssetName GetAssetName(string role)
     {
@@ -100,6 +102,7 @@ internal sealed class TextureRegistry : ITextureRegistry
                          (
                              KeySelector,
                              StringComparer.OrdinalIgnoreCase
-                         ).ToArray();
+                         ).
+                         ToArray();
     }
 }

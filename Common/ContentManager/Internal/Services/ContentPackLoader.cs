@@ -1,4 +1,5 @@
 using System;
+using ItsStardewContentManager.Internal.Assets;
 using ItsStardewContentManager.Internal.Models;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
@@ -74,7 +75,11 @@ internal sealed class ContentPackLoader
     {
         if (string.IsNullOrWhiteSpace(role))
         {
-            _monitor.Log($"Pack '{pack.Manifest.UniqueID}' contains a blank asset role. Entry skipped.", LogLevel.Error);
+            _monitor.Log
+            (
+                $"Pack '{pack.Manifest.UniqueID}' contains a blank asset role. Entry skipped.",
+                LogLevel.Error
+            );
             return;
         }
 
@@ -101,14 +106,21 @@ internal sealed class ContentPackLoader
         try
         {
             Texture2D texture = pack.ModContent.Load<Texture2D>(relativePath);
-            IAssetName assetName = pack.ModContent.GetInternalAssetName(relativePath);
+            IAssetName internalAssetName = pack.ModContent.GetInternalAssetName(relativePath);
+
+            AssetRole assetRole = new(role);
+            string publicAssetPath = assetKeys.Texture(role);
 
             _registry.Register
             (
-                role,
-                texture,
-                assetName,
-                pack.Manifest.UniqueID
+                new TextureAsset
+                (
+                    assetRole,
+                    texture,
+                    internalAssetName,
+                    pack.Manifest.UniqueID,
+                    publicAssetPath
+                )
             );
 
             _monitor.Log($"Registered asset role '{role}' from '{pack.Manifest.UniqueID}' as '{assetName}'.");
