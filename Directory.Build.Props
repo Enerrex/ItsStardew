@@ -1,13 +1,32 @@
-﻿<Project>
-    <Import Project="build/sdk/SmapiManifestSdk/GenerateSmapiManifest.props"
-            Condition="Exists('build/sdk/SmapiManifestSdk/GenerateSmapiManifest.props')" />
-    
-    <Import Project="build/generated/ManifestVariables.g.props"
-            Condition="Exists('build/generated/ManifestVariables.g.props')" />
-    
+<Project>
+    <PropertyGroup>
+        <RepoRootDir>$(MSBuildThisFileDirectory)</RepoRootDir>
+        <SmapiManifestSdkImportRoot Condition="'$(SmapiManifestSdkImportRoot)' == '' and Exists('$(RepoRootDir)Orchestration\SmapiManifestSdkBuilder\SdkSource\SmapiManifestSdk\GenerateSmapiManifest.props')">$(RepoRootDir)Orchestration\SmapiManifestSdkBuilder\SdkSource\SmapiManifestSdk\</SmapiManifestSdkImportRoot>
+        <SmapiManifestSdkImportRoot Condition="'$(SmapiManifestSdkImportRoot)' == '' and Exists('$(RepoRootDir)build\sdk\SmapiManifestSdk\GenerateSmapiManifest.props')">$(RepoRootDir)build\sdk\SmapiManifestSdk\</SmapiManifestSdkImportRoot>
+        <SmapiManifestSdkImportRoot Condition="'$(SmapiManifestSdkImportRoot)' == '' and Exists('$(RepoRootDir)build\sdk\SmapiManifestSdk\SmapiManifestSdk\GenerateSmapiManifest.props')">$(RepoRootDir)build\sdk\SmapiManifestSdk\SmapiManifestSdk\</SmapiManifestSdkImportRoot>
+        <CentralBinBlacklist Condition="'$(CentralBinBlacklist)' == ''"/>
+    </PropertyGroup>
+
+    <Import Project="$(RepoRootDir)build\generated\ManifestTask.g.props"
+            Condition="Exists('$(RepoRootDir)build\generated\ManifestTask.g.props')" />
+
+    <Import Project="$(SmapiManifestSdkImportRoot)GenerateSmapiManifest.props"
+            Condition="'$(SmapiManifestSdkImportRoot)' != '' and Exists('$(SmapiManifestSdkImportRoot)GenerateSmapiManifest.props')" />
+
+    <Import Project="$(RepoRootDir)build\generated\ManifestVariables.g.props"
+            Condition="Exists('$(RepoRootDir)build\generated\ManifestVariables.g.props')" />
+
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <LangVersion>latest</LangVersion>
+        <ModFamilyPrefix>[ItsStardew]</ModFamilyPrefix>
+
+        <_IsCentralBinBlacklisted>$([System.String]::Copy(';$(CentralBinBlacklist);').Contains(';$(MSBuildProjectName);'))</_IsCentralBinBlacklisted>
+        <UseCentralBinLayout Condition="'$(UseCentralBinLayout)' == '' and '$(_IsCentralBinBlacklisted)' == 'False'">true</UseCentralBinLayout>
+        <UseCentralBinLayout Condition="'$(UseCentralBinLayout)' == '' and '$(_IsCentralBinBlacklisted)' == 'True'">false</UseCentralBinLayout>
+
+        <BinGroup Condition="'$(BinGroup)' == ''">Ungrouped</BinGroup>
+        <BaseOutputPath Condition="'$(BaseOutputPath)' == '' and '$(UseCentralBinLayout)' == 'true'">$(RepoRootDir)bin\$(BinGroup)\$(MSBuildProjectName)\</BaseOutputPath>
     </PropertyGroup>
 </Project>

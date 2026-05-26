@@ -5,6 +5,6 @@
   "Description": "Content pack providing casting machine assets.",
   "UniqueID": "Caboose.Sage.ItsStardew.Content.Pack.Metals.CastingMachine",
   "ContentPackFor": {
-    "UniqueID": "Caboose.Sage.ItsStardew.Content.Manager.Metals"
+    "UniqueID": "Caboose.Sage.ItsStardew.Mod.MetalsCasting"
   }
 }

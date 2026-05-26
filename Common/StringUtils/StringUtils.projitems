@@ -1,0 +1,4 @@
+<Project>
+  <Import Project="StringUtils.shared.props" />
+  <Import Project="StringUtils.shared.projitems" />
+</Project>

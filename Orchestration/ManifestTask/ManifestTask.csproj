@@ -1,0 +1,55 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>latest</LangVersion>
+        <AssemblyName>ManifestTask</AssemblyName>
+        <ManifestTaskCacheRoot Condition="'$(ManifestTaskCacheRoot)' == ''">$([System.IO.Path]::Combine($([System.Environment]::GetEnvironmentVariable('LOCALAPPDATA')), 'ItsStardew', 'ManifestTask'))</ManifestTaskCacheRoot>
+        <ManifestTaskCacheStamp Condition="'$(ManifestTaskCacheStamp)' == ''">$([System.Guid]::NewGuid().ToString('N'))</ManifestTaskCacheStamp>
+        <ManifestTaskCacheDir>$(ManifestTaskCacheRoot)\$(ManifestTaskCacheStamp)\</ManifestTaskCacheDir>
+        <ManifestTaskCacheAssembly>$(ManifestTaskCacheDir)ManifestTask.dll</ManifestTaskCacheAssembly>
+        <ManifestTaskGeneratedPropsPath>$(RepoRootDir)build\generated\ManifestTask.g.props</ManifestTaskGeneratedPropsPath>
+    </PropertyGroup>
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Build.Framework" />
+      <PackageReference Include="Microsoft.Build.Utilities.Core" />
+    </ItemGroup>
+
+    <Target Name="PublishManifestTaskCache"
+            Condition="'$(ManifestTaskPublishCache)' != 'false'"
+            AfterTargets="Build">
+        <MakeDir Directories="$(ManifestTaskCacheDir)" />
+
+        <Copy SourceFiles="$(TargetPath)"
+              DestinationFiles="$(ManifestTaskCacheAssembly)"
+              OverwriteReadOnlyFiles="true" />
+
+        <Copy SourceFiles="$(TargetDir)$(AssemblyName).pdb"
+              DestinationFiles="$(ManifestTaskCacheDir)ManifestTask.pdb"
+              Condition="Exists('$(TargetDir)$(AssemblyName).pdb')" />
+
+        <Copy SourceFiles="$(TargetDir)$(AssemblyName).deps.json"
+              DestinationFiles="$(ManifestTaskCacheDir)ManifestTask.deps.json"
+              Condition="Exists('$(TargetDir)$(AssemblyName).deps.json')" />
+
+        <MakeDir Directories="$(RepoRootDir)build\generated" />
+
+        <PropertyGroup>
+            <_ManifestTaskGeneratedPropsText>&lt;Project&gt;
+  &lt;PropertyGroup&gt;
+    &lt;ManifestTaskAssembly&gt;$(ManifestTaskCacheAssembly)&lt;/ManifestTaskAssembly&gt;
+    &lt;ManifestTaskCacheRoot&gt;$(ManifestTaskCacheRoot)&lt;/ManifestTaskCacheRoot&gt;
+    &lt;ManifestTaskCacheStamp&gt;$(ManifestTaskCacheStamp)&lt;/ManifestTaskCacheStamp&gt;
+    &lt;ManifestTaskCacheDir&gt;$(ManifestTaskCacheDir)&lt;/ManifestTaskCacheDir&gt;
+  &lt;/PropertyGroup&gt;
+&lt;/Project&gt;</_ManifestTaskGeneratedPropsText>
+        </PropertyGroup>
+
+        <WriteLinesToFile File="$(ManifestTaskGeneratedPropsPath)"
+                          Lines="$(_ManifestTaskGeneratedPropsText)"
+                          Overwrite="true"
+                          Encoding="UTF-8" />
+    </Target>
+
+</Project>

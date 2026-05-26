@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <_HasModBuildConfigPackage>@(PackageReference->WithMetadataValue('Identity','Pathoschild.Stardew.ModBuildConfig')->Count())</_HasModBuildConfigPackage>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(_HasModBuildConfigPackage)' == '0'">
+    <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" />
+  </ItemGroup>
+</Project>

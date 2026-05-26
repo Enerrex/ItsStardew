@@ -52,3 +52,7 @@ CodeCoverage/
 *.VisualState.xml
 TestResult.xml
 nunit-*.xml
+
+# Generated SDK deployment payloads
+build/sdk/*
+!build/sdk/.gitkeep

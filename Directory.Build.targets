@@ -1,4 +1,8 @@
-﻿<Project>
-    <Import Project="build/sdk/SmapiManifestSdk/GenerateSmapiManifest.targets"
-            Condition="Exists('build/sdk/SmapiManifestSdk/GenerateSmapiManifest.targets')" />
+<Project>
+    <PropertyGroup>
+        <SmapiManifestSdkImportRoot Condition="'$(SmapiManifestSdkImportRoot)' == '' and Exists('$(MSBuildThisFileDirectory)Orchestration\SmapiManifestSdkBuilder\SdkSource\SmapiManifestSdk\GenerateSmapiManifest.targets')">$(MSBuildThisFileDirectory)Orchestration\SmapiManifestSdkBuilder\SdkSource\SmapiManifestSdk\</SmapiManifestSdkImportRoot>
+    </PropertyGroup>
+
+    <Import Project="$(SmapiManifestSdkImportRoot)GenerateSmapiManifest.targets"
+            Condition="'$(SmapiManifestSdkImportRoot)' != '' and Exists('$(SmapiManifestSdkImportRoot)GenerateSmapiManifest.targets')" />
 </Project>

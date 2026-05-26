@@ -1,21 +1,39 @@
 <Solution>
   <Folder Name="/Common/">
-    <Project Path="Common/UniqueIds/UniqueIds.csproj" />
-  </Folder>
-  <Folder Name="/Content-Managers/">
-    <Project Path="Content-Managers/MetalsContentManager/MetalsContentManager.csproj" />
+    <Project Path="Common/ContentManager/ContentManager.csproj" />
+    <Project Path="Common/HarmonyPatchChannels/HarmonyPatchChannels.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
+    <Project Path="Common/StringUtils/StringUtils.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
   </Folder>
   <Folder Name="/Mods/">
     <Project Path="Mods/ItsStardewCasting/ItsStardewCasting.csproj" />
     <Project Path="Mods/ItsStardewTime/ItsStardewTime.csproj" />
   </Folder>
-  <Folder Name="/Tools/">
-    <Project Path="Tools/DirectoryTreeDisplay/DirectoryTreeDisplay.csproj" />
-    <Project Path="Tools/ManifestTask/ManifestTask.csproj" />
-    <Project Path="Tools/ProjectVarGenerator/ProjectVarGenerator.csproj" />
-  </Folder>
   <Folder Name="/Content-Packs/">
     <Project Path="Content-Packs/Metals-Assets/Casting-Machine/Casting-Machine.csproj" />
-    <Project Path="Content-Packs/Metals-Assets/Casting-Machine/Jewelry.csproj" />
+    <Project Path="Content-Packs/Metals-Assets/Jewelry/Jewelry.csproj" />
+  </Folder>
+  <Folder Name="/Orchestration/">
+    <Project Path="Orchestration/UniqueIds/UniqueIds.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
+    <Project Path="Orchestration/ManifestTask/ManifestTask.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
+    <Project Path="Orchestration/ProjectVarGenerator/ProjectVarGenerator.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
+    <Project Path="Orchestration/ProductBundler/ProductBundler.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
+    <Project Path="Orchestration/SmapiManifestSdkBuilder/SmapiManifestSdkBuilder.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="Tools/DirectoryTreeDisplay/DirectoryTreeDisplay.csproj" />
   </Folder>
 </Solution>

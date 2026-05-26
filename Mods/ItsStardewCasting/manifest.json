@@ -1,0 +1,9 @@
+{
+  "Name": "It's Stardew Metal Casting",
+  "Author": "Caboose Sage",
+  "Version": "1.0.0",
+  "Description": "Casting mechanics and gameplay that consume the metals content manager.",
+  "UniqueID": "Caboose.Sage.ItsStardew.Mod.MetalsCasting",
+  "EntryDll": "ItsStardewCasting.dll",
+  "MinimumApiVersion": "4.0.0"
+}

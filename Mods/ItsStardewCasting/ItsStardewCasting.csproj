@@ -1,9 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\Common\StringUtils\StringUtils.shared.props" />
+  <Import Project="..\..\Common\StringUtils\StringUtils.shared.projitems" />
+
   <PropertyGroup>
     <EnableHarmony>true</EnableHarmony>
     <ModFolderName>$(ModFamilyPrefix) Metal Casting</ModFolderName>
 
-    <Version>1.0.0</Version>
+    <Version>1.0.0</Version> 
     <Description>Casting mechanics and gameplay that consume the metals content manager.</Description>
 
     <GenerateManagedManifest>true</GenerateManagedManifest>
@@ -17,11 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\StringUtils\StringUtils.csproj" />
-    <ProjectReference Include="..\..\Content-Managers\MetalsContentManager\MetalsContentManager.csproj" />
+    <ProjectReference Include="..\..\Common\ContentManager\ContentManager.csproj" />
+    <Folder Include="Framework\State\" />
   </ItemGroup>
 </Project>

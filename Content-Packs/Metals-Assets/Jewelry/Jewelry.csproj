@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <Description>Content pack providing artisan jewelry assets.</Description>
+    <ModFolderName>$(ModFamilyPrefix) [Content] Jewelry</ModFolderName>
+
+    <GenerateManagedManifest>true</GenerateManagedManifest>
+    <ManifestKind>SmapiContentPack</ManifestKind>
+
+    <ManifestName>Its Stardew Jewelry Assets</ManifestName>
+    <ManifestUniqueId>$(PROJECTVARS_CONTENT_PACKS_METALS_JEWELRY)</ManifestUniqueId>
+    <ManifestAuthor>$(PROJECTVARS_AUTHOR_NAME)</ManifestAuthor>
+    <ManifestContentParkFor>$(PROJECTVARS_MODS_METALSCASTING)</ManifestContentParkFor>
+
+    <ManagedManifestOutputPath>$(MSBuildProjectDirectory)\manifest.json</ManagedManifestOutputPath>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <EnableDefaultItems>false</EnableDefaultItems>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <RepoRoot>$(MSBuildProjectDirectory)\..\..\</RepoRoot>
+        <SmapiManifestSdkSourceDir>$(MSBuildProjectDirectory)\SdkSource\SmapiManifestSdk\</SmapiManifestSdkSourceDir>
+        <SmapiManifestSdkStageRoot>$(BaseIntermediateOutputPath)sdk-package\</SmapiManifestSdkStageRoot>
+        <SmapiManifestSdkStageDir>$(SmapiManifestSdkStageRoot)SmapiManifestSdk\</SmapiManifestSdkStageDir>
+        <SmapiManifestSdkZipPath>$(RepoRoot)build\sdk\SmapiManifestSdk.zip</SmapiManifestSdkZipPath>
+        <ManifestTaskProjectPath>$(MSBuildProjectDirectory)\..\ManifestTask\ManifestTask.csproj</ManifestTaskProjectPath>
+    </PropertyGroup>
+
+    <Target Name="BuildSmapiManifestSdkZip" AfterTargets="Build">
+        <Error Condition="!Exists('$(SmapiManifestSdkSourceDir)GenerateSmapiManifest.props')"
+               Text="SMAPI manifest SDK source payload was not found at '$(SmapiManifestSdkSourceDir)'." />
+
+        <PropertyGroup>
+            <_ShouldBuildManifestTask Condition="'$(ManifestTaskAssembly)' == '' or !Exists('$(ManifestTaskAssembly)')">true</_ShouldBuildManifestTask>
+        </PropertyGroup>
+
+        <MSBuild Projects="$(ManifestTaskProjectPath)"
+                 Targets="Build"
+                 Properties="Configuration=$(Configuration);ManifestTaskCacheStamp=$(ManifestTaskCacheStamp);ManifestTaskCacheRoot=$(ManifestTaskCacheRoot)"
+                 Condition="'$(_ShouldBuildManifestTask)' == 'true'" />
+
+        <MSBuild Projects="$(ManifestTaskProjectPath)"
+                 Targets="GetTargetPath"
+                 Properties="Configuration=$(Configuration)"
+                 Condition="'$(_ShouldBuildManifestTask)' == 'true'">
+            <Output TaskParameter="TargetOutputs" ItemName="_ManifestTaskTargetPath" />
+        </MSBuild>
+
+        <PropertyGroup>
+            <ManifestTaskAssembly Condition="'$(ManifestTaskAssembly)' == '' and '@(_ManifestTaskTargetPath)' != ''">@(_ManifestTaskTargetPath)</ManifestTaskAssembly>
+            <ManifestTaskOutputDir Condition="'$(ManifestTaskAssembly)' != ''">$([System.IO.Path]::GetDirectoryName('$(ManifestTaskAssembly)'))</ManifestTaskOutputDir>
+        </PropertyGroup>
+
+        <Error Condition="'$(ManifestTaskAssembly)' == '' or !Exists('$(ManifestTaskAssembly)')"
+               Text="ManifestTaskAssembly was not available. Run scripts\build.ps1 or build Orchestration\ManifestTask first." />
+
+        <RemoveDir Directories="$(SmapiManifestSdkStageRoot)" />
+        <MakeDir Directories="$(SmapiManifestSdkStageDir)" />
+
+        <ItemGroup>
+            <_SmapiManifestStaticFiles Include="$(SmapiManifestSdkSourceDir)**\*" />
+            <_ManifestTaskArtifacts Include="$(ManifestTaskAssembly)" />
+            <_ManifestTaskArtifacts Include="$(ManifestTaskOutputDir)ManifestTask.pdb"
+                                    Condition="Exists('$(ManifestTaskOutputDir)ManifestTask.pdb')" />
+            <_ManifestTaskArtifacts Include="$(ManifestTaskOutputDir)ManifestTask.deps.json"
+                                    Condition="Exists('$(ManifestTaskOutputDir)ManifestTask.deps.json')" />
+        </ItemGroup>
+
+        <Copy SourceFiles="@(_SmapiManifestStaticFiles)"
+              DestinationFiles="@(_SmapiManifestStaticFiles->'$(SmapiManifestSdkStageDir)%(RecursiveDir)%(Filename)%(Extension)')" />
+
+        <MakeDir Directories="$(SmapiManifestSdkStageDir)tools" />
+        <Copy SourceFiles="@(_ManifestTaskArtifacts)"
+              DestinationFolder="$(SmapiManifestSdkStageDir)tools\" />
+
+        <MakeDir Directories="$([System.IO.Path]::GetDirectoryName('$(SmapiManifestSdkZipPath)'))" />
+        <Delete Files="$(SmapiManifestSdkZipPath)"
+                Condition="Exists('$(SmapiManifestSdkZipPath)')" />
+
+        <ZipDirectory SourceDirectory="$(SmapiManifestSdkStageRoot)"
+                      DestinationFile="$(SmapiManifestSdkZipPath)"
+                      Overwrite="true" />
+
+        <Message Importance="High"
+                 Text="Created SDK package: $(SmapiManifestSdkZipPath)" />
+    </Target>
+</Project>

@@ -1,0 +1,21 @@
+﻿<Project>
+    <Target Name="ApplyManifestFallbacks">
+        <PropertyGroup>
+            <!-- Core manifest values -->
+            <ManifestVersion Condition="'$(ManifestVersion)' == '' and '$(Version)' != ''">$(Version)</ManifestVersion>
+            <ManifestName Condition="'$(ManifestName)' == '' and '$(AssemblyName)' != ''">$(AssemblyName)</ManifestName>
+            <ManifestDescription Condition="'$(ManifestDescription)' == '' and '$(Description)' != ''">$(Description)</ManifestDescription>
+            <ManifestAuthor Condition="'$(ManifestAuthor)' == '' and '$(ManifestVar_Author)' != ''">$(ManifestVar_Author)</ManifestAuthor>
+
+            <!-- Output / file-related values -->
+            <ManifestEntryDll Condition="'$(ManifestEntryDll)' == '' and '$(TargetFileName)' != ''">$(TargetFileName)</ManifestEntryDll>
+            <ManagedManifestOutputPath Condition="'$(ManagedManifestOutputPath)' == ''">$(ProjectDir)manifest.json</ManagedManifestOutputPath>
+
+            <!-- Schema / template roots -->
+            <ManifestTemplateRoot Condition="'$(ManifestTemplateRoot)' == ''">$(MSBuildThisFileDirectory)..\templates\</ManifestTemplateRoot>
+            <ManifestKindsFile Condition="'$(ManifestKindsFile)' == ''">$(MSBuildThisFileDirectory)..\schemas\manifest-kinds.json</ManifestKindsFile>
+        </PropertyGroup>
+
+        <Message Importance="Low" Text="Manifest fallback resolution for $(MSBuildProjectName): Version='$(ManifestVersion)' Name='$(ManifestName)' UniqueId='$(ManifestUniqueId)' EntryDll='$(ManifestEntryDll)'" />
+    </Target>
+</Project>

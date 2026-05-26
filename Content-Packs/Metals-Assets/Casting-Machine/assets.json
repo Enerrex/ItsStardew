@@ -1,0 +1,7 @@
+{
+  "Textures": {
+    "casting-machine.base": "assets/casting-machine-v3.png",
+    "molds.overlay": "assets/Molds-Overlay-Sheet.png",
+    "molds.inventory": "assets/Mold-Inventory-Sheet.png"
+  }
+}

@@ -1,7 +1,7 @@
 ﻿using System;
 using StardewValley;
 
-namespace Common.Strings;
+namespace ItsStardewContentManager.Strings;
 
 /// <summary>
 /// Stardew Valley qualified item ID helpers.
@@ -33,7 +33,9 @@ public static class SdvQualifiedId
     public static string Build(ItemKind kind, string itemId)
     {
         if (string.IsNullOrWhiteSpace(itemId))
+        {
             throw new ArgumentException("Item ID cannot be null or empty.", nameof(itemId));
+        }
 
         return GetTypePrefix(kind) + itemId;
     }
@@ -62,7 +64,9 @@ public static class SdvQualifiedId
     public static bool IsQualified(string itemId)
     {
         if (string.IsNullOrWhiteSpace(itemId))
+        {
             return false;
+        }
 
         int closeParen = itemId.IndexOf(')');
         return itemId.Length >= 4
@@ -73,7 +77,9 @@ public static class SdvQualifiedId
     public static string QualifyAsObjectIfNeeded(string itemId)
     {
         if (string.IsNullOrWhiteSpace(itemId))
+        {
             throw new ArgumentException("Item ID cannot be null or empty.", nameof(itemId));
+        }
 
         return IsQualified(itemId) ? itemId : Object(itemId);
     }
@@ -83,7 +89,9 @@ public static class SdvQualifiedId
         kind = default;
 
         if (!IsQualified(qualifiedId))
+        {
             return false;
+        }
 
         int closeParen = qualifiedId.IndexOf(')');
         string prefix = qualifiedId[..(closeParen + 1)];

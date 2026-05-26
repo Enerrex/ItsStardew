@@ -2,6 +2,7 @@
     <PropertyGroup>
         <Version>1.0.0</Version>
         <Description>Content pack providing casting machine assets.</Description>
+        <ModFolderName>$(ModFamilyPrefix) [Content] Casting Machine</ModFolderName>
 
         <GenerateManagedManifest>true</GenerateManagedManifest>
         <ManifestKind>SmapiContentPack</ManifestKind>
@@ -9,7 +10,7 @@
         <ManifestName>Its Stardew Casting Machine Assets</ManifestName>
         <ManifestUniqueId>$(PROJECTVARS_CONTENT_PACKS_METALS_CASTINGMACHINE)</ManifestUniqueId>
         <ManifestAuthor>$(PROJECTVARS_AUTHOR_NAME)</ManifestAuthor>
-        <ManifestContentParkFor>$(PROJECTVARS_CONTENT_MANAGERS_METALS)</ManifestContentParkFor>
+        <ManifestContentParkFor>$(PROJECTVARS_MODS_METALSCASTING)</ManifestContentParkFor>
 
         <ManagedManifestOutputPath>$(MSBuildProjectDirectory)\manifest.json</ManagedManifestOutputPath>
     </PropertyGroup>

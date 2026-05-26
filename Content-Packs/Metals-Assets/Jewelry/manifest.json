@@ -1,10 +1,10 @@
 {
-  "Name": "Its Stardew Jewelry (Jewelery Content)",
+  "Name": "Its Stardew Jewelry Assets",
   "Author": "Caboose Sage",
-  "Version": "0.5.0",
-  "Description": "Content pack providing artisan jewelry",
-  "UniqueID": "Caboose.Sage.ItsStardewJewelry.Jewelry",
+  "Version": "1.0.0",
+  "Description": "Content pack providing artisan jewelry assets.",
+  "UniqueID": "Caboose.Sage.ItsStardew.Content.Pack.Metals.Jewelry",
   "ContentPackFor": {
-    "UniqueID": "Caboose.Sage.Metals.Manager"
+    "UniqueID": "Caboose.Sage.ItsStardew.Mod.MetalsCasting"
   }
 }
