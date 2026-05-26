@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using HarmonyLib;
-using ItsStardewContentManager.Framework;
-using ItsStardewContentManager.Framework.Constants;
-using ItsStardewContentManager.Framework.ContentManager;
-using ItsStardewContentManager.Framework.ContentManager.Constants;
+using ItsStardewCasting.Framework.ContentManager;
+using ItsStardewCasting.Framework.ContentManager.Constants;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
@@ -11,9 +9,8 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.GameData.BigCraftables;
 using StardewValley.GameData.Objects;
-using SharedContentManager = ItsStardewContentManager.ContentManager;
 
-namespace ItsStardewContentManager;
+namespace ItsStardewCasting;
 
 public sealed class ModEntry : Mod
 {

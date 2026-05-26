@@ -1,4 +1,4 @@
-﻿namespace ItsStardewContentManager.Framework.ContentManager;
+﻿namespace ItsStardewCasting.Framework.ContentManager;
 
 public sealed record TileSheetInfo
 (

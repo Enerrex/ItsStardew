@@ -1,6 +1,6 @@
 ﻿using StardewModdingAPI;
 
-namespace ItsStardewContentManager.Framework.ContentManager;
+namespace ItsStardewCasting.Framework.ContentManager;
 
 public class CastingContentManager
 {

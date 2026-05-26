@@ -1,8 +1,8 @@
 ﻿<Project>
   <PropertyGroup>
-    <ManifestTaskAssembly>C:\Users\jprit\AppData\Local\ItsStardew\ManifestTask\6620ac252d37494bb5ea463dd8cd9b83\ManifestTask.dll</ManifestTaskAssembly>
+    <ManifestTaskAssembly>C:\Users\jprit\AppData\Local\ItsStardew\ManifestTask\b698f21339aa4056b61b54cfd127983c\ManifestTask.dll</ManifestTaskAssembly>
     <ManifestTaskCacheRoot>C:\Users\jprit\AppData\Local\ItsStardew\ManifestTask</ManifestTaskCacheRoot>
-    <ManifestTaskCacheStamp>6620ac252d37494bb5ea463dd8cd9b83</ManifestTaskCacheStamp>
-    <ManifestTaskCacheDir>C:\Users\jprit\AppData\Local\ItsStardew\ManifestTask\6620ac252d37494bb5ea463dd8cd9b83\</ManifestTaskCacheDir>
+    <ManifestTaskCacheStamp>b698f21339aa4056b61b54cfd127983c</ManifestTaskCacheStamp>
+    <ManifestTaskCacheDir>C:\Users\jprit\AppData\Local\ItsStardew\ManifestTask\b698f21339aa4056b61b54cfd127983c\</ManifestTaskCacheDir>
   </PropertyGroup>
 </Project>

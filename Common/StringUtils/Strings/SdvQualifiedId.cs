@@ -1,7 +1,7 @@
 ﻿using System;
 using StardewValley;
 
-namespace ItsStardewContentManager.Strings;
+namespace Common.Strings;
 
 /// <summary>
 /// Stardew Valley qualified item ID helpers.

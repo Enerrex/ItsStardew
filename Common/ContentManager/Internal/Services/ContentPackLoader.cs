@@ -1,4 +1,5 @@
 using System;
+using ItsStardewContentManager.Api.Assets.Drawables;
 using ItsStardewContentManager.Internal.Assets;
 using ItsStardewContentManager.Internal.Models;
 using Microsoft.Xna.Framework.Graphics;

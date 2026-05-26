@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ItsStardewContentManager.Framework.Patches.Util;
+namespace ItsStardewCasting.Framework.Patches.Util;
 
 internal sealed class OrderedHandlerList<T>
 {

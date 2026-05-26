@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 
-namespace ItsStardewContentManager.Framework.Patches.Api;
+namespace ItsStardewCasting.Framework.Patches.Api;
 
 internal interface IPatchChannel
 {

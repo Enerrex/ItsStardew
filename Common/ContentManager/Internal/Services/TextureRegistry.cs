@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ItsStardewContentManager.Api.Assets.Drawables;
+using ItsStardewContentManager.Internal.Assets;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 
@@ -8,7 +10,7 @@ namespace ItsStardewContentManager.Internal.Services;
 
 internal sealed class TextureRegistry : ITextureRegistry
 {
-    private readonly Dictionary<string, Texture2D> _textures = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<AssetRole, Texture2D> _textureAssets = new(StringComparer.OrdinalIgnoreCase);
 
     private readonly Dictionary<string, IAssetName> _assetNames = new(StringComparer.OrdinalIgnoreCase);
 
@@ -16,27 +18,25 @@ internal sealed class TextureRegistry : ITextureRegistry
 
     public void Register
     (
-        string role,
-        Texture2D texture,
-        IAssetName assetName,
-        string sourcePackId
+        TextureAsset asset
     )
     {
-        if (string.IsNullOrWhiteSpace(role))
+        var asset_role = asset.Role;
+        if (string.IsNullOrWhiteSpace(asset_role))
         {
             throw new ArgumentException
             (
                 "Asset role cannot be null or whitespace.",
-                nameof(role)
+                nameof(asset_role)
             );
         }
 
-        if (texture is null)
+        if (asset is null)
         {
-            throw new ArgumentNullException(nameof(texture));
+            throw new ArgumentNullException(nameof(asset));
         }
 
-        if (_textures.ContainsKey(role))
+        if (_textureAssets.ContainsKey(role))
         {
             string priorPack = _sourcePacks[role];
             throw new InvalidOperationException
@@ -45,60 +45,16 @@ internal sealed class TextureRegistry : ITextureRegistry
             );
         }
 
-        _textures[role] = texture;
+        _textureAssets[role] = texture;
         _assetNames[role] = assetName;
         _sourcePacks[role] = sourcePackId;
     }
-
-    public Texture2D GetTexture(string role)
-    {
-        if (!TryGetTexture
-            (
-                role,
-                out Texture2D texture
-            ))
-        {
-            throw new KeyNotFoundException($"No texture registered for asset role '{role}'.");
-        }
-
-        return texture;
-    }
-
-    public bool TryGetTexture(string role, out Texture2D texture)
-    {
-        return _textures.TryGetValue
-        (
-            role,
-            out texture!
-        );
-    }
-
-    public IAssetName GetAssetName(string role)
-    {
-        if (!TryGetAssetName
-            (
-                role,
-                out IAssetName assetName
-            ))
-        {
-            throw new KeyNotFoundException($"No asset name registered for asset role '{role}'.");
-        }
-
-        return assetName;
-    }
-
-    public bool TryGetAssetName(string role, out IAssetName assetName) =>
-        _assetNames.TryGetValue
-        (
-            role,
-            out assetName!
-        );
 
     public IReadOnlyCollection<string> GetAvailableRoles()
     {
         string KeySelector(string p) => p;
 
-        return _textures.Keys.OrderBy
+        return _textureAssets.Keys.OrderBy
                          (
                              KeySelector,
                              StringComparer.OrdinalIgnoreCase

@@ -1,4 +1,4 @@
-﻿namespace ItsStardewContentManager.Framework.ContentManager.Constants;
+﻿namespace ItsStardewCasting.Framework.ContentManager.Constants;
 
 public sealed class ModDataKeys
 {

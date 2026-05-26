@@ -1,4 +1,4 @@
-namespace ItsStardewContentManager.Framework.Constants;
+namespace ItsStardewCasting.Framework.ContentManager.Constants;
 
 public static class CastingAssetRoles
 {

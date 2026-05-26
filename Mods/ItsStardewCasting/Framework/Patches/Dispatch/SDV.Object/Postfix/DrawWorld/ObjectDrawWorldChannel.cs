@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using SObject = StardewValley.Object;
 
-namespace ItsStardewContentManager.Framework.Patches.Dispatch.SDV.Object.Postfix.DrawWorld;
+namespace ItsStardewCasting.Framework.Patches.Dispatch.SDV.Object.Postfix.DrawWorld;
 
 
 

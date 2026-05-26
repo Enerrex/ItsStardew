@@ -1,4 +1,4 @@
-﻿namespace ItsStardewContentManager.Internal.Assets;
+﻿namespace ItsStardewContentManager.Api.Assets;
 
 public readonly record struct KeyScope(string Prefix, string Separator="/")
 {

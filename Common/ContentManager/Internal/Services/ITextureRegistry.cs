@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using ItsStardewContentManager.Api.Assets.Drawables;
+using ItsStardewContentManager.Internal.Assets;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
 
@@ -6,10 +8,9 @@ namespace ItsStardewContentManager.Internal.Services;
 
 public interface ITextureRegistry
 {
-    void Register(string role, Texture2D texture, IAssetName assetName, string sourcePackId);
-    Texture2D GetTexture(string role);
-    bool TryGetTexture(string role, out Texture2D texture);
-    IAssetName GetAssetName(string role);
-    bool TryGetAssetName(string role, out IAssetName assetName);
+    void Register(TextureAsset asset);
+    public TextureAsset GetTextureAsset(AssetRole role);
+    public bool TryGetTextureAsset(AssetRole role, out TextureAsset asset);
+    
     IReadOnlyCollection<string> GetAvailableRoles();
 }

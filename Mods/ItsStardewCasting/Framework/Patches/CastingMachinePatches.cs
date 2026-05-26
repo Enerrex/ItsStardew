@@ -1,8 +1,8 @@
 using HarmonyLib;
-using ItsStardewContentManager.Framework.Constants;
+using ItsStardewCasting.Framework.ContentManager.Constants;
 using StardewValley;
 
-namespace ItsStardewContentManager.Framework.Patches;
+namespace ItsStardewCasting.Framework.Patches;
 
 [HarmonyPatch
 (

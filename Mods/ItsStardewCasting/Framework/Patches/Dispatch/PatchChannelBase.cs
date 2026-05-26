@@ -1,8 +1,8 @@
 ﻿using HarmonyLib;
-using ItsStardewContentManager.Framework.Patches.Api;
-using ItsStardewContentManager.Framework.Patches.Util;
+using ItsStardewCasting.Framework.Patches.Api;
+using ItsStardewCasting.Framework.Patches.Util;
 
-namespace ItsStardewContentManager.Framework.Patches.Dispatch;
+namespace ItsStardewCasting.Framework.Patches.Dispatch;
 
 internal abstract class PatchChannelBase<T> : IPatchChannel
 {
