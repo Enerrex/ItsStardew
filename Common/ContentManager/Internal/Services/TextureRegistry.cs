@@ -10,9 +10,7 @@ namespace ItsStardewContentManager.Internal.Services;
 
 internal sealed class TextureRegistry : ITextureRegistry
 {
-    private readonly Dictionary<AssetRole, Texture2D> _textureAssets = new(StringComparer.OrdinalIgnoreCase);
-
-    private readonly Dictionary<string, IAssetName> _assetNames = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<string, TextureAsset> _textureAssets = new(StringComparer.OrdinalIgnoreCase);
 
     private readonly Dictionary<string, string> _sourcePacks = new(StringComparer.OrdinalIgnoreCase);
 
@@ -36,18 +34,21 @@ internal sealed class TextureRegistry : ITextureRegistry
             throw new ArgumentNullException(nameof(asset));
         }
 
-        if (_textureAssets.ContainsKey(role))
+        if (!_textureAssets.TryAdd
+            (
+                asset_role,
+                asset
+            ))
         {
-            string priorPack = _sourcePacks[role];
+            string priorPack = _sourcePacks[asset_role];
             throw new InvalidOperationException
             (
-                $"Duplicate asset role '{role}'. Already registered by '{priorPack}', cannot also register from '{sourcePackId}'."
+                $"Duplicate asset role '{asset_role}'. Already registered " +
+                $"by '{priorPack}', cannot also register from '{asset.SourcePackId}'."
             );
         }
 
-        _textureAssets[role] = texture;
-        _assetNames[role] = assetName;
-        _sourcePacks[role] = sourcePackId;
+        _sourcePacks[asset_role] = asset.SourcePackId;
     }
 
     public IReadOnlyCollection<string> GetAvailableRoles()
