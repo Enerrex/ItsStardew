@@ -10,7 +10,7 @@ namespace ItsStardewContentManager.Internal.Services;
 
 internal sealed class TextureRegistry : ITextureRegistry
 {
-    private readonly Dictionary<string, TextureAsset> _textureAssets = new(StringComparer.OrdinalIgnoreCase);
+    private readonly Dictionary<AssetRole, TextureAsset> _textureAssets = new();
 
     private readonly Dictionary<string, string> _sourcePacks = new(StringComparer.OrdinalIgnoreCase);
 
@@ -19,7 +19,7 @@ internal sealed class TextureRegistry : ITextureRegistry
         TextureAsset asset
     )
     {
-        var asset_role = asset.Role;
+        AssetRole asset_role = asset.Role;
         if (string.IsNullOrWhiteSpace(asset_role))
         {
             throw new ArgumentException
@@ -51,15 +51,26 @@ internal sealed class TextureRegistry : ITextureRegistry
         _sourcePacks[asset_role] = asset.SourcePackId;
     }
 
-    public IReadOnlyCollection<string> GetAvailableRoles()
+    public TextureAsset? GetTextureAsset(AssetRole role)
     {
-        string KeySelector(string p) => p;
+        return _textureAssets.GetValueOrDefault(role);
+    }
 
-        return _textureAssets.Keys.OrderBy
-                         (
-                             KeySelector,
-                             StringComparer.OrdinalIgnoreCase
-                         ).
-                         ToArray();
+    public bool TryGetTextureAsset(AssetRole role, out TextureAsset asset)
+    {
+        return _textureAssets.TryGetValue
+        (
+            role,
+            out asset
+        );
+    }
+
+    public IReadOnlyCollection<AssetRole> GetAvailableRoles()
+    {
+        string KeySelector(AssetRole role) => role.Value;
+
+        return _textureAssets.Keys
+            .OrderBy(KeySelector, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
     }
 }

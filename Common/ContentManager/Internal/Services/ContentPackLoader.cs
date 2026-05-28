@@ -1,4 +1,5 @@
 using System;
+using ItsStardewContentManager.Api.Assets.AssetKeys;
 using ItsStardewContentManager.Api.Assets.Drawables;
 using ItsStardewContentManager.Internal.Assets;
 using ItsStardewContentManager.Internal.Models;
@@ -14,13 +15,11 @@ internal sealed class ContentPackLoader
     ITextureRegistry registry
 )
 {
-    private readonly IModHelper _helper = helper;
-    private readonly IMonitor _monitor = monitor;
-    private readonly ITextureRegistry _registry = registry;
-
+    private readonly ModAssetKeys _modAssetKeys = new(helper.ModRegistry.ModID);
+    
     public void LoadAllOwnedPacks()
     {
-        foreach (IContentPack pack in _helper.ContentPacks.GetOwned())
+        foreach (IContentPack pack in helper.ContentPacks.GetOwned())
         {
             LoadPack(pack);
         }
@@ -32,7 +31,7 @@ internal sealed class ContentPackLoader
 
         if (!pack.HasFile(METADATA_FILE))
         {
-            _monitor.Log
+            monitor.Log
             (
                 $"Skipping content pack '{pack.Manifest.UniqueID}' because '{METADATA_FILE}' is missing.",
                 LogLevel.Warn
@@ -43,7 +42,7 @@ internal sealed class ContentPackLoader
         PackAssetsFile? metadata = pack.ReadJsonFile<PackAssetsFile>(METADATA_FILE);
         if (metadata is null)
         {
-            _monitor.Log
+            monitor.Log
             (
                 $"Skipping content pack '{pack.Manifest.UniqueID}' because '{METADATA_FILE}' could not be parsed.",
                 LogLevel.Error
@@ -53,7 +52,7 @@ internal sealed class ContentPackLoader
 
         if (metadata.Textures.Count == 0)
         {
-            _monitor.Log
+            monitor.Log
             (
                 $"Content pack '{pack.Manifest.UniqueID}' defines no textures in '{METADATA_FILE}'.",
                 LogLevel.Warn
@@ -76,7 +75,7 @@ internal sealed class ContentPackLoader
     {
         if (string.IsNullOrWhiteSpace(role))
         {
-            _monitor.Log
+            monitor.Log
             (
                 $"Pack '{pack.Manifest.UniqueID}' contains a blank asset role. Entry skipped.",
                 LogLevel.Error
@@ -86,7 +85,7 @@ internal sealed class ContentPackLoader
 
         if (string.IsNullOrWhiteSpace(relativePath))
         {
-            _monitor.Log
+            monitor.Log
             (
                 $"Pack '{pack.Manifest.UniqueID}' defines role '{role}' with a blank path. Entry skipped.",
                 LogLevel.Error
@@ -96,7 +95,7 @@ internal sealed class ContentPackLoader
 
         if (!pack.HasFile(relativePath))
         {
-            _monitor.Log
+            monitor.Log
             (
                 $"Pack '{pack.Manifest.UniqueID}' defines role '{role}' with missing file '{relativePath}'.",
                 LogLevel.Error
@@ -110,9 +109,9 @@ internal sealed class ContentPackLoader
             IAssetName internalAssetName = pack.ModContent.GetInternalAssetName(relativePath);
 
             AssetRole assetRole = new(role);
-            string publicAssetPath = assetKeys.Texture(role);
+            string publicAssetPath = _modAssetKeys.Texture(assetRole);
 
-            _registry.Register
+            registry.Register
             (
                 new TextureAsset
                 (
@@ -124,11 +123,11 @@ internal sealed class ContentPackLoader
                 )
             );
 
-            _monitor.Log($"Registered asset role '{role}' from '{pack.Manifest.UniqueID}' as '{assetName}'.");
+            monitor.Log($"Registered asset role '{role}' from '{pack.Manifest.UniqueID}' as '{internalAssetName}'.");
         }
         catch (Exception ex)
         {
-            _monitor.Log
+            monitor.Log
             (
                 $"Failed loading role '{role}' from pack '{pack.Manifest.UniqueID}' at '{relativePath}': {ex}",
                 LogLevel.Error

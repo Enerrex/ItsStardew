@@ -9,8 +9,8 @@ namespace ItsStardewContentManager.Internal.Services;
 public interface ITextureRegistry
 {
     void Register(TextureAsset asset);
-    public TextureAsset GetTextureAsset(AssetRole role);
+    public TextureAsset? GetTextureAsset(AssetRole role);
     public bool TryGetTextureAsset(AssetRole role, out TextureAsset asset);
     
-    IReadOnlyCollection<string> GetAvailableRoles();
+    IReadOnlyCollection<AssetRole> GetAvailableRoles();
 }

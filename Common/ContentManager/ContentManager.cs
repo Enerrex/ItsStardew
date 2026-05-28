@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using ItsStardewContentManager.Api.Assets.Drawables;
 using ItsStardewContentManager.Api.Interfaces;
+using ItsStardewContentManager.Internal.Assets;
 using ItsStardewContentManager.Internal.Services;
 using Microsoft.Xna.Framework.Graphics;
 using StardewModdingAPI;
@@ -29,39 +31,15 @@ public sealed class ContentManager : IContentManager
         );
     }
 
-    public Texture2D GetTexture(string role)
+    public TextureAsset GetTextureAsset(AssetRole role)
     {
-        return _registry.GetTexture
-        (
-            role
-        );
+        return _registry.GetTextureAsset(role)!;
     }
 
-    public bool TryGetTexture(string role, out Texture2D texture)
+    public bool TryGetTextureAsset(AssetRole role, out TextureAsset textureAsset)
     {
-        return _registry.TryGetTexture
-        (
-            role,
-            out texture
-        );
+        return _registry.TryGetTextureAsset(role, out textureAsset);
     }
 
-    public IAssetName GetAssetName(string role)
-    {
-        return _registry.GetAssetName
-        (
-            role
-        );
-    }
-
-    public bool TryGetAssetName(string role, out IAssetName assetName)
-    {
-        return _registry.TryGetAssetName
-        (
-            role,
-            out assetName
-        );
-    }
-
-    public IReadOnlyCollection<string> GetAvailableRoles() => _registry.GetAvailableRoles();
+    public IReadOnlyCollection<AssetRole> GetAvailableRoles() => _registry.GetAvailableRoles();
 }
